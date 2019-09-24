@@ -31,7 +31,7 @@
                 <b-input v-model="newCategorie"></b-input> <!-- recuperation de saisie de utilisateur -->
                 </b-field>
                 <div class="buttons">
-                  <b-button type="is-info" @click="addCategorie">Valider</b-button> <!-- actiond de sauvegarde -->
+                  <b-button type="is-info" @click="addCategorie">Valider</b-button> <!-- action de sauvegarde -->
                 </div>
               </b-tab-item>
             </b-tabs>

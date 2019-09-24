@@ -2,4 +2,4 @@
   <div>
     {{$route.params.id}}
   </div>
-</template
+</template>

@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
+        <a class="navbar-item" href="/public/index.html">
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
         </a>
       </div>
@@ -86,7 +86,7 @@ html {
   flex-wrap: wrap;
   justify-content: center;
   background-color: #388fec;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .espace {
   padding: 20px;
