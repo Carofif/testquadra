@@ -1,37 +1,80 @@
 <template>
-  <section>
-      <b-collapse :open="false" aria-id="contentIdForA11y1">
-         <button
-                class="button is-white is-large cardcategorie"
-                slot="trigger"
-                style=""
-                aria-controls="contentIdForA11y1">Click me!</button>
-         <div class="notification">
-                <div class="content">
-                    <h3>
-                        Subtitle
-                    </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/>
-                        Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh eu lectus. <br/>
-                        Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis neque.
+  <div>
+      <section class="container has-background-white" v-for="(item, index) in categories" :key="index">
+        <b-collapse :open="false" aria-id="contentIdForA11y1">
+            <article  class="media espace espacemargin"
+                    slot="trigger"
+                    aria-controls="contentIdForA11y1">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                    <img src="../../images/iconcall.png" alt="">
                     </p>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                      <p>
+                          <strong>{{item.libelle}}</strong>
+                          <br>
+                          {{articlesCat(item.id).length}} articles dans cette catégorie
+                      </p>
+                    </div>
                 </div>
-         </div>
-      </b-collapse>
-  </section>
+            </article>
+              <div class="espace">
+                        <div class="content espace has-background-light" v-for="(art, y) in articlesCat(item.id)" :key="y">
+                          <router-link :to="{ name: 'article', params: { id: art.id }}">
+                            <strong>{{art.titre}}</strong>
+                        </router-link>
+                        </div>
+              </div>
+        </b-collapse>
+      </section>
+    </div>
 </template>
 
 <script>
+import { db } from "@/plugins/firebase";
+
 export default {
-    
+  data() {
+     return {
+      categories: [],
+      articles: []
+    }
+  },
+  methods: {
+    articlesCat(id) {
+      return this.articles.filter(art => art.idCat === id);
+    },
+    getAct () {
+      db.ref('articles/').on('value', (snap) => {
+        if (snap.val()) {
+          this.articles = Object.values(snap.val())
+        } else {
+          this.articles = []
+        }
+      })
+    },
+    getCat () {
+      db.ref('categories/').on('value', (snap) => {
+        if (snap.val()) {
+          this.categories = Object.values(snap.val())
+        } else {
+          this.categories = []
+        }
+      })
+    }
+  },
+  mounted () {
+    this.getCat()
+    this.getAct()
+  },
+  destroyed () {
+    db.ref('categories/').off()
+    db.ref('articles/').off()
+  }
 }
 </script>
 
 <style>
-.cardcategorie {
-    position: relative;
-    margin: 50px;
-    padding: 50px;
-}
 </style>
