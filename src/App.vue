@@ -15,41 +15,7 @@
               <a class="button is-primary">
                 <strong>Sign up</strong>
               </a>
-              <b-button type="is-primary" icon-left="plus"  @click="AjoutArticle = true"></b-button>
-               <b-modal :active.sync="AjoutArticle" :width="640" scroll="keep">
-                 <div class="card">
-                   <b-tabs v-model="activeTab">
-                    <b-tab-item label="Article">
-                         <b-field label="Categorie">
-                            <b-select placeholder="Selectionner la catégorie">
-                              <option
-                                  v-for="option in data"
-                                  :value="option.id"
-                                  :key="option.id">
-                                  {{ option.user.first_name }}
-                              </option>
-                            </b-select>
-                         </b-field>
-                        <b-field label="Titre de l'article">
-                          <b-input v-model="titrearticle"></b-input>
-                        </b-field>
-                        <b-field label="Contenue de l'article">
-                          <vue-editor v-model="content"/>
-                        </b-field>
-                    </b-tab-item>
-
-                    <b-tab-item label="Categorie">
-                       <b-field label="Categorie">
-                         <b-input v-model="categorie"></b-input>
-                       </b-field>
-                       <div class="buttons">
-                           <b-button type="is-primary">Valider</b-button>
-                         </div>
-                     </b-tab-item>
-                  </b-tabs>
-                 </div>
-                 
-                </b-modal>
+              <Add></Add>
             </div>
           </div>
         </div>
@@ -79,23 +45,15 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 import Categorie from './components/categorie/Categorie.vue'
+import Add from './components/Add.vue'
 
 export default {
-  data() {
-      return {
-        AjoutArticle: false,
-        activeTab: 0,
-        showBooks: false,
-        content: ""
-      }
-  },
-  name: 'app',
+   name: 'app',
   components: {
-    VueEditor,
-    Categorie
-  }
+    Categorie,
+    Add
+  },
 }
 </script>
 
