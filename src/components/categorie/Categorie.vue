@@ -10,7 +10,7 @@
                  aria-controls="contentIdForA11y1">
             <figure class="media-left">
                 <p class="image is-64x64">
-                <img src="../../images/iconcall.png" alt="">
+                <img src="../../images/img.png" alt="">
                 </p>
             </figure>
             <div class="media-content">
@@ -27,6 +27,8 @@
               <div class="content espace has-background-light" v-for="(art, y) in articlesCat(item.id)" :key="y">
                 <router-link :to="{ name: 'article', params: { id: art.id }}">
                   <strong>{{art.titre}}</strong>
+                  <br>
+                     Mise à jour il y a  {{getDate(art.date)}}
               </router-link>
               </div>
             </div>
@@ -37,6 +39,7 @@
 
 <script>
 import { db } from "@/plugins/firebase";
+import moment from "moment";
 
 export default {
   data() {
@@ -58,6 +61,9 @@ export default {
         }
       })
     },
+    getDate(date){
+     return moment(date, 'lll').fromNow();
+    },
     getCategorie () {
       db.ref('categories/').on('value', (snap) => {
         if (snap.val()) {
@@ -78,6 +84,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

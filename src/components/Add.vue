@@ -44,6 +44,7 @@
 <script>
 import { VueEditor } from "vue2-editor";
 import { db } from "@/plugins/firebase"; // importation du module db de firebase
+import moment from "moment";
 export default {
   data() {
      return {
@@ -68,18 +69,19 @@ export default {
           titre: this.titreArticle,
           id: idAct,
           content: this.content,
-          idCat: this.catSelect
+          idCat: this.catSelect,
+          date: moment().format('lll')
         });
         this.titreArticle = ''
         this.content = ''
         this.$buefy.toast.open({
-            message: 'Article enregistree',
+            message: 'Article enregistrée',
             type: 'is-success',
             position: 'is-bottom'
         })
       } else {
         this.$buefy.toast.open({
-            message: 'Aucunne donnee saisie',
+            message: 'Aucune donnée saisie',
             type: 'is-danger',
             position: 'is-bottom'
         })
@@ -102,13 +104,13 @@ export default {
         })
       } else {
         this.$buefy.toast.open({
-            message: 'Aucunne donnee saisie',
+            message: 'Aucune donnée saisie',
             type: 'is-danger',
             position: 'is-bottom'
         })
       }
     },
-    getCat () {
+    getCategorie () {
       db.ref('categories/').on('value', (snap) => {
         if (snap.val()) {
           this.categories = Object.values(snap.val())
@@ -119,13 +121,10 @@ export default {
     }
   },
   mounted () {
-    this.getCat()
+    this.getCategorie()
   },
   destroyed () {
     db.ref('categories/').off()
   }
 }
 </script>
-
-<style>
-</style>
