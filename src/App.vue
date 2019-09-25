@@ -2,8 +2,8 @@
   <div id="app">
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/public/index.html">
-          <img src="/images/logo.jpeg" width="112" height="28">
+        <a class="navbar-item" href="/">
+          <img src="./images/logo.jpeg" width="112" height="28">
         </a>
       </div>
 

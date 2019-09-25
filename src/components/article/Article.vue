@@ -1,4 +1,8 @@
 <template>
+<div>
+  <div class="navbar-item has-text-dark" href="/categorie">
+    <span>Aide en ligne/Catégorie</span>
+  </div>
   <div class="card" id="card">
     <strong class="card-header-title" style="font-size: 3em; margin: auto">{{article.titre}}</strong>
     <div class="card-content" v-html="article.content"></div>
@@ -6,6 +10,7 @@
         <span class="card-content" id="footer"> Ces informations vous-ont elles été utiles?</span>
     </div>
   </div>
+</div>
 </template>
 <script>
   import { db } from "@/plugins/firebase";

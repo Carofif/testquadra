@@ -1,8 +1,5 @@
 <template>
   <div>
-        <a class="navbar-item has-text-dark" href="/src/components/categorie/Categorie.vue">
-          <span>Aide en ligne/Catégorie</span>
-        </a>
       <section class="container has-background-white" v-for="(item, index) in categories" :key="index">
         <b-collapse :open="false" aria-id="contentIdForA11y1">
           <article  class="media espace espacemargin"
@@ -45,10 +42,14 @@ export default {
   data() {
      return {
       categories: [],
-      articles: []
+      articles: [],
+      isCategorie: false,
     }
   },
   methods: {
+    setIsCategorie(value){
+         this.isCategorie = value
+     },
     articlesCat(id) {
       return this.articles.filter(art => art.idCat === id);
     },
