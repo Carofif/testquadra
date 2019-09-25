@@ -1,6 +1,9 @@
 <template>
   <div>
-      <section class="container has-background-white" v-for="(item, index) in categories" :key="index">
+      <a v-if="isCategorie" class="navbar-item has-text-dark is-active" href="/categorie">
+        <span>Aide en ligne/Catégorie</span>
+      </a>
+      <section class="container has-background-white" v-for="(item, index) in categories" :key="index" @click="setIsCategorie(true)">
         <b-collapse :open="false" aria-id="contentIdForA11y1">
           <article  class="media espace espacemargin"
                 slot="trigger"

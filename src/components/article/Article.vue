@@ -1,13 +1,17 @@
 <template>
 <div>
-  <div class="navbar-item has-text-dark" href="/categorie">
+  <a class="navbar-item has-text-dark" href="/categorie">
     <span>Aide en ligne/Catégorie</span>
-  </div>
+  </a>
   <div class="card" id="card">
     <strong class="card-header-title" style="font-size: 3em; margin: auto">{{article.titre}}</strong>
     <div class="card-content" v-html="article.content"></div>
     <div class="card" id="card-foot">
-        <span class="card-content" id="footer"> Ces informations vous-ont elles été utiles?</span>
+        <span class="card-content" id="footer"> Ces informations vous-ont elles été utiles?
+          <img src="./../../images/smile.png" alt="">
+          <img src="./../../images/sadface.png" alt="">
+          <img src="./../../images/triste.png" alt="">
+        </span>
     </div>
   </div>
 </div>
