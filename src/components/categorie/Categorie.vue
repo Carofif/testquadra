@@ -10,7 +10,7 @@
                  aria-controls="contentIdForA11y1">
             <figure class="media-left">
                 <p class="image is-64x64">
-                <img src="../../images/img.png" alt="">
+                <img :src="item.image" alt="">
                 </p>
             </figure>
             <div class="media-content">

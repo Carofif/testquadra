@@ -40,12 +40,14 @@
             </div>
           </nav>
            <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                    <input class="input" type="search" placeholder="Rechercher des réponses...">
-                    <span class="icon is-small is-left">
-                    <i class="fas fa-search"></i>
-                    </span>
-                </p>
+             <b-autocomplete
+                v-model="name"
+                :data="filteredDataArray"
+                placeholder="Rechercher des réponses..."
+                icon="magnify"
+                @select="option => selected = option">
+                <template slot="empty">Aucun résultat trouvé</template>
+              </b-autocomplete>
           </div> 
         </div>
       </section>
@@ -56,12 +58,39 @@
 
 <script>
 import Add from './components/Add.vue'
+import { db } from "@/plugins/firebase";
 
 export default {
-   name: 'app',
+  name: 'app',
   components: {
     Add
   },
+  data() {
+    return {
+      categories: [],
+      articles: []
+    }
+  },
+  methods: {
+     getCategorie () {
+      db.ref('categories/').on('value', (snap) => {
+        if (snap.val()) {
+          this.categories = Object.values(snap.val())
+        } else {
+          this.categories = []
+        }
+      })
+    },
+    getArticle () {
+      db.ref('articles/').on('value', (snap) => {
+        if (snap.val()) {
+          this.articles = Object.values(snap.val())
+        } else {
+          this.articles = []
+        }
+      })
+    }
+  }
 }
 </script>
 

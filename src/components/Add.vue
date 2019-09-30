@@ -27,6 +27,17 @@
               </b-tab-item>
 
               <b-tab-item label="Catégorie">
+                <b-field class="file">
+                  <b-upload v-model="image" @input="imageAdd">
+                    <a class="button is-info">
+                      <b-icon icon="upload"></b-icon>
+                      <span>Cliquer pour ajouter l'mage de la catégorie</span>
+                    </a>
+                  </b-upload>
+                  <span class="file-name" v-if="image">
+                    {{image.name}}
+                  </span>
+                </b-field>
                 <b-field label="Catégorie">
                 <b-input v-model="newCategorie"></b-input> <!-- recuperation de saisie de utilisateur -->
                 </b-field>
@@ -55,13 +66,24 @@ export default {
       titreArticle: '',
       categories: [], // table qui va recevoir toute les categories
       newCategorie: '', // variable charge de recevoir la value saisie pas l'utilisateur
-      catSelect: {}
+      catSelect: {},
+      image: null,
+      dataUrlImage: null
     }
   },
   components: {
     VueEditor
   },
   methods: {
+    imageAdd (e) {
+      const imge = e;
+      const reader = new FileReader();
+      reader.readAsDataURL(imge);
+      reader.onload = e =>{
+          this.dataUrlImage = e.target.result;
+          console.log(this.dataUrlImage);
+      }
+    },
     addArticle () {
       if (this.titreArticle.length && this.content.length && this.catSelect) {
         const idAct = db.ref().child('articles').push().key;
@@ -89,12 +111,13 @@ export default {
     },
     // fonction d'ajout d'une catégorie sur firebase
     addCategorie () {
-      if (this.newCategorie.length) { // verifie si une info est saisie
+      if (this.newCategorie.length && this.dataUrlImage) { // verifie si une info est saisie
         const idCat = db.ref().child('categories').push().key; // recupere la key genere par firebase 
         // envoi des donnees dans la base de donnee
         db.ref('categories/' + idCat).set({
           libelle: this.newCategorie,
-          id: idCat
+          id: idCat,
+          image: this.dataUrlImage
         });
         this.newCategorie = ''
         this.$buefy.toast.open({
