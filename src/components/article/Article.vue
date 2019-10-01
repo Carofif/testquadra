@@ -1,43 +1,37 @@
 <template>
 <div>
-  <a class="navbar-item has-text-dark" href="/categorie">
+  <router-link class="navbar-item has-text-dark" to="/categorie">
     <span>Aide en ligne/Catégorie</span>
-  </a>
-  <div class="card" id="card">
+  </router-link>
+  <div class="card" id="card" v-if="getArticles.length">
     <strong class="card-header-title" style="font-size: 3em; margin: auto">{{article.titre}}</strong>
     <div class="card-content" v-html="article.content"></div>
     <div class="card" id="card-foot">
         <span class="card-content" id="footer"> Ces informations vous-ont elles été utiles?
-          <img src="./../../images/smile.png" alt="">
-          <img src="./../../images/sadface.png" alt="">
-          <img src="./../../images/triste.png" alt="">
+          <img src="./../../assets/images/smiling.png" alt="">
+          <img src="./../../assets/images/confused.png" alt="">
+          <img src="./../../assets/images/unhappy.png" alt="">
         </span>
     </div>
   </div>
 </div>
 </template>
 <script>
-  import { db } from "@/plugins/firebase";
+import { mapGetters, mapActions } from 'vuex'
   export default {
     data() {
-      return {
-        article: {}
+      return {}
+    },
+    computed: {
+      ...mapGetters([
+        'getArticles'
+      ]),
+      article () {
+        return this.getArticles.filter(art => art.id === this.$route.params.id)[0]
       }
     },
-    methods: {
-      getArticle () {
-        db.ref('articles/' + this.$route.params.id).once('value', (snap) => {
-          if (snap.val()) {
-            this.article = snap.val()
-          } else {
-            this.article = {}
-          }
-        })
-      }
-    },
-    mounted () {
-      this.getArticle()
-    }
+    methods: {},
+    mounted () {}
   }
 </script>
 <style >

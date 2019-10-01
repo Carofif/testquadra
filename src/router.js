@@ -18,6 +18,10 @@ export default new Router({
       component: Categorie
     },
     {
+      path: '/categorie/:id',
+      component: Categorie
+    },
+    {
       path: '/article/:id',
       component: Article,
       name: 'article'

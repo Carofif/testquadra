@@ -2,55 +2,66 @@
   <div id="app">
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <img src="./images/logo.jpeg" width="112" height="28">
+        <a class="navbar-item">
+          <img src="./assets/images/logo.jpeg" width="112" height="28">
         </a>
+        <div class="btn_add"><Add></Add></div>
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
 
         <div class="navbar-end">
           <div class="navbar-item">
-            <div class="buttons">
-              <Add></Add>
-            </div>
+            <Add></Add>
           </div>
         </div>
       </div>
-  </nav>
-  <div class="h-100 conteneur">
-      <section class="section">
-        <div class="container">
-             <!-- Main container -->
-          <nav class="level">
-            <!-- Left side -->
-            <div class="level-left">
-              <div class="level-item">
-                <p class="subtitle is-10 has-text-white">
-                  Comment pouvons-nous vous aider ?
-                </p>
-              </div>
-              <div class="level-item"></div>
-            </div>
+    </nav>
+    <div class="conteneur">
+      <div class="columns is-mobile">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <section class="section padding-x-0">
+            <div class="container">
+                <!-- Main container -->
+              <nav class="level">
+                <!-- Left side -->
+                <div class="level-left">
+                  <div class="level-item">
+                    <p class="subtitle is-10 has-text-white">
+                      Comment pouvons-nous vous aider ?
+                    </p>
+                  </div>
+                  <div class="level-item"></div>
+                </div>
 
-            <!-- Right side -->
-            <div class="level-right">
-              <p class="level-item has-text-white"><i class="fas fa-external-link-alt"></i></p>
-              <p class="level-item has-text-white">Aller sur Affixe2.0</p>
+                <!-- Right side -->
+                <div class="level-right">
+                  <p class="level-item has-text-white"><i class="fas fa-external-link-alt"></i></p>
+                  <p class="level-item has-text-white">Aller sur Affixe2.0</p>
+                </div>
+              </nav>
+              <div class="field">
+                <b-autocomplete
+                    v-model="search"
+                    :data="filteredDataArray"
+                    placeholder="Rechercher des réponses..."
+                    icon="magnify"
+                    field="motcle"
+                    @select="option => selected = option">
+                    <template slot-scope="props">
+                        <p>
+                          <strong> {{props.option.motcle}} </strong>
+                          <br>
+                          {{props.option.type}}
+                        </p>
+                    </template>
+                    <template slot="empty">Aucun résultat trouvé</template>
+                  </b-autocomplete>
+              </div>
             </div>
-          </nav>
-           <div class="field">
-             <b-autocomplete
-                v-model="name"
-                :data="filteredDataArray"
-                placeholder="Rechercher des réponses..."
-                icon="magnify"
-                @select="option => selected = option">
-                <template slot="empty">Aucun résultat trouvé</template>
-              </b-autocomplete>
-          </div> 
+          </section>
         </div>
-      </section>
+      </div>
     </div>
     <router-view></router-view>
   </div>
@@ -58,7 +69,8 @@
 
 <script>
 import Add from './components/Add.vue'
-import { db } from "@/plugins/firebase";
+import { db } from '@/plugins/firebase'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
@@ -68,28 +80,87 @@ export default {
   data() {
     return {
       categories: [],
-      articles: []
+      articles: [],
+      search: '',
+      selected: null
+    }
+  },
+  watch: {
+    selected (val) {
+      if (val.type === 'Article') {
+        this.$router.push('/article/' + val.id)
+      } else {
+        this.$router.push('/categorie/' + val.id)
+      }
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getCategories',
+      'getArticles'
+    ]),
+    allData () {
+      const categories = []
+      this.getCategories.forEach(cat => {
+        cat.motcle = cat.libelle
+        categories.push({
+          ...cat,
+          type: 'Categorie'
+        })
+      })
+      const articles = []
+      this.getArticles.forEach(art => {
+        art.motcle = art.titre
+        articles.push({
+          ...art,
+          type: 'Article'
+        })
+      })
+      return categories.concat(articles)
+    },
+    filteredDataArray() {
+      return this.allData.filter((option) => {
+        return option.motcle
+          .toString()
+          .toLowerCase()
+          .indexOf(this.search.toLowerCase()) >= 0
+      })
     }
   },
   methods: {
-     getCategorie () {
+    ...mapActions([
+      'updateCategories',
+      'updateArticles'
+    ]),
+    getCategorie () {
       db.ref('categories/').on('value', (snap) => {
         if (snap.val()) {
-          this.categories = Object.values(snap.val())
+          this.updateCategories(Object.values(snap.val()))
         } else {
-          this.categories = []
+          this.updateCategories([])
         }
       })
     },
     getArticle () {
+      const loadingComponent = this.$buefy.loading.open()
       db.ref('articles/').on('value', (snap) => {
         if (snap.val()) {
-          this.articles = Object.values(snap.val())
+          this.updateArticles(Object.values(snap.val()))
+          loadingComponent.close()
         } else {
-          this.articles = []
+          this.updateArticles([])
+          loadingComponent.close()
         }
       })
     }
+  },
+  mounted () {
+    this.getCategorie()
+    this.getArticle()
+  },
+  destroyed () {
+    db.ref('categories/').off()
+    db.ref('articles/').off()
   }
 }
 </script>
@@ -111,9 +182,6 @@ html {
   background-color: #f2f7f9 !important;
 }
 .conteneur {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   background-color: #388fec;
   margin-bottom: 30px;
 }
@@ -123,5 +191,14 @@ html {
 .espacemargin {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.btn_add{
+  position: absolute;
+  right: 10px;
+  top: 7px
+}
+.padding-x-0{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 </style>

@@ -1,61 +1,60 @@
 <template>
   <div>
-      <b-button type="is-success" icon-left="plus"  @click="AjoutArticle = true"></b-button>
-        <b-modal :active.sync="AjoutArticle" :width="640" scroll="keep">
-          <div class="card">
-            <b-tabs v-model="activeTab" type="is-toggle" expanded>
-              <b-tab-item label="Article">
-                <b-field label="Catégorie">
-                  <b-select placeholder="Selectionner la catégorie" v-model="catSelect">
-                    <option
-                      v-for="categorie in categories"
-                      :value="categorie.id"
-                      :key="categorie.id">
-                      {{ categorie.libelle }}
-                    </option>
-                  </b-select>
-                </b-field>
-                <b-field label="Titre de l'article">
-                  <b-input v-model="titreArticle"></b-input>
-                </b-field>
-                <b-field label="Contenue de l'article">
-                  <vue-editor v-model="content"/>
-                </b-field>
-                <div class="buttons">
-                  <b-button type="is-info" @click="addArticle">Valider</b-button>
-                </div>
-              </b-tab-item>
+    <b-button type="is-success" icon-left="plus"  @click="AjoutArticle = true"></b-button>
+      <b-modal :active.sync="AjoutArticle" :width="640" scroll="keep">
+        <div class="card">
+          <b-tabs v-model="activeTab" type="is-toggle" expanded>
+            <b-tab-item label="Article">
+              <b-field label="Catégorie">
+                <b-select placeholder="Selectionner la catégorie" v-model="catSelect">
+                  <option
+                    v-for="categorie in categories"
+                    :value="categorie.id"
+                    :key="categorie.id">
+                    {{ categorie.libelle }}
+                  </option>
+                </b-select>
+              </b-field>
+              <b-field label="Titre de l'article">
+                <b-input v-model="titreArticle"></b-input>
+              </b-field>
+              <b-field label="Contenue de l'article">
+                <vue-editor v-model="content"/>
+              </b-field>
+              <div class="buttons">
+                <b-button type="is-info" @click="addArticle">Valider</b-button>
+              </div>
+            </b-tab-item>
 
-              <b-tab-item label="Catégorie">
-                <b-field class="file">
-                  <b-upload v-model="image" @input="imageAdd">
-                    <a class="button is-info">
-                      <b-icon icon="upload"></b-icon>
-                      <span>Cliquer pour ajouter l'mage de la catégorie</span>
-                    </a>
-                  </b-upload>
-                  <span class="file-name" v-if="image">
-                    {{image.name}}
-                  </span>
-                </b-field>
-                <b-field label="Catégorie">
-                <b-input v-model="newCategorie"></b-input> <!-- recuperation de saisie de utilisateur -->
-                </b-field>
-                <div class="buttons">
-                  <b-button type="is-info" @click="addCategorie">Valider</b-button> <!-- action de sauvegarde -->
-                </div>
-              </b-tab-item>
-            </b-tabs>
-          </div>
-                    
-        </b-modal>
+            <b-tab-item label="Catégorie">
+              <b-field class="file">
+                <b-upload v-model="image" @input="imageAdd">
+                  <a class="button is-info">
+                    <b-icon icon="upload"></b-icon>
+                    <span>Cliquer pour ajouter l'image de la catégorie</span>
+                  </a>
+                </b-upload>
+                <span class="file-name" v-if="image">
+                  {{image.name}}
+                </span>
+               </b-field>
+              <b-field label="Catégorie">
+              <b-input v-model="newCategorie"></b-input>
+              </b-field>
+              <div class="buttons">
+                <b-button type="is-info" @click="addCategorie">Valider</b-button>
+              </div>
+            </b-tab-item>
+          </b-tabs>
+        </div>      
+      </b-modal>
   </div>
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
-import { db } from "@/plugins/firebase"; // importation du module db de firebase
-import moment from "moment";
+import { VueEditor } from 'vue2-editor'
+import { db } from '@/plugins/firebase'
+import moment from 'moment'
 export default {
   data() {
      return {
@@ -64,8 +63,8 @@ export default {
       showBooks: false,
       content: "",
       titreArticle: '',
-      categories: [], // table qui va recevoir toute les categories
-      newCategorie: '', // variable charge de recevoir la value saisie pas l'utilisateur
+      categories: [],
+      newCategorie: '',
       catSelect: {},
       image: null,
       dataUrlImage: null
@@ -81,7 +80,6 @@ export default {
       reader.readAsDataURL(imge);
       reader.onload = e =>{
           this.dataUrlImage = e.target.result;
-          console.log(this.dataUrlImage);
       }
     },
     addArticle () {
@@ -109,11 +107,9 @@ export default {
         })
       }
     },
-    // fonction d'ajout d'une catégorie sur firebase
     addCategorie () {
-      if (this.newCategorie.length && this.dataUrlImage) { // verifie si une info est saisie
-        const idCat = db.ref().child('categories').push().key; // recupere la key genere par firebase 
-        // envoi des donnees dans la base de donnee
+      if (this.newCategorie.length && this.dataUrlImage) {
+        const idCat = db.ref().child('categories').push().key;
         db.ref('categories/' + idCat).set({
           libelle: this.newCategorie,
           id: idCat,
