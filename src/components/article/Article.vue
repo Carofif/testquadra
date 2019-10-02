@@ -12,7 +12,7 @@
             <span class="card-content" id="footer"> Ces informations vous-ont elles été utiles?
               <img src="./../../assets/images/smiling.png" alt="">
               <img src="./../../assets/images/confused.png" alt="">
-                <img src="./../../assets/images/unhappy.png" alt="">
+              <img src="./../../assets/images/unhappy.png" alt="">
             </span>
         </div>
       </div>
@@ -20,8 +20,9 @@
   </div>
 </div>
 </template>
+
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters} from 'vuex'
   export default {
     data() {
       return {}
@@ -38,25 +39,3 @@ import { mapGetters, mapActions } from 'vuex'
     mounted () {}
   }
 </script>
-<style >
-#card{
-  margin: auto;
-  width: 50%;
-  height: 100%;
-  margin-top: 60px;
-  border-radius: 2px 2px ;
-  background-color: #ffffff;
-}
-#card-foot{
-  width: 95%;
-  position: relative;
-  height: 50px;
-  border: darkkhaki;
-  background-color: #f2f7fa;
-  margin: auto;
-  bottom: 10px;
-}
-#footer{
-  position: relative;
-  top: 15px;
-}

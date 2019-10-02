@@ -9,7 +9,6 @@
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
-
         <div class="navbar-end">
           <div class="navbar-item">
             <Add></Add>
@@ -22,19 +21,14 @@
         <div class="column is-three-fifths is-offset-one-fifth">
           <section class="section padding-x-0">
             <div class="container">
-                <!-- Main container -->
               <nav class="level">
-                <!-- Left side -->
                 <div class="level-left">
                   <div class="level-item">
                     <p class="subtitle is-10 has-text-white">
                       Comment pouvons-nous vous aider ?
                     </p>
                   </div>
-                  <div class="level-item"></div>
                 </div>
-
-                <!-- Right side -->
                 <div class="level-right">
                   <p class="level-item has-text-white"><i class="fas fa-external-link-alt"></i></p>
                   <p class="level-item has-text-white">Aller sur Affixe2.0</p>
