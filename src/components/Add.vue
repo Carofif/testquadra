@@ -55,13 +55,16 @@
 import { VueEditor } from 'vue2-editor'
 import { db } from '@/plugins/firebase'
 import moment from 'moment'
+
+moment.locale("fr")
+
 export default {
   data() {
      return {
       AjoutArticle: false,
       activeTab: 0,
       showBooks: false,
-      content: "",
+      content: '',
       titreArticle: '',
       categories: [],
       newCategorie: '',
@@ -90,7 +93,7 @@ export default {
           id: idAct,
           content: this.content,
           idCat: this.catSelect,
-          date: moment().format('lll')
+          date: moment().format('YYYYMMDDHHmm')
         });
         this.titreArticle = ''
         this.content = ''

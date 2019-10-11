@@ -30,7 +30,7 @@
                     <router-link :to="{ name: 'article', params: { id: art.id }}">
                       <strong>{{art.titre}}</strong>
                       <br>
-                        Mise à jour il y a  {{getDate(art.date)}}
+                        Mise à jour  {{getDate(art.date)}}
                   </router-link>
                   </div>
                 </div>
@@ -44,6 +44,8 @@
 <script>
 import moment from 'moment'
 import { mapGetters } from 'vuex'
+
+moment.locale("fr")
 
 export default {
   data() {
@@ -68,10 +70,15 @@ export default {
       this.isCategorie = value
      },
     articlesCat(id) {
-      return this.articles.filter(art => art.idCat === id);
+      let triArticle =this.articles.filter(art => art.idCat === id);
+      triArticle.sort(function(a, b) {
+      return a.moyenne - b.moyenn
+      })
+      this.articles= triArticle
+      return this.articles.reverse()
     },
     getDate(date){
-     return moment(date, 'lll').fromNow();
+      return moment(date, 'YYYYMMDDHHmm').fromNow();
     }
   }
 }

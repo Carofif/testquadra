@@ -14,7 +14,7 @@ export default new Vuex.Store({
       state.categories = data
     },
     SET_ARTICLES: (state, data) => {
-      state.articles = data
+      state.articles = data 
     },
     SET_ARTICLE: (state, data) => {
       state.currentArticle = data
