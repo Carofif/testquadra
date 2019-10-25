@@ -54,10 +54,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      getCategories: 'getCategories',
-      articles: 'getArticles'
-    }),
+    ...mapGetters([
+      'getCategories',
+      'getArticles'
+    ]),
     categories () {
       if (this.$route.params.id) {
         return this.getCategories.filter(cat => cat.id === this.$route.params.id)
@@ -70,12 +70,7 @@ export default {
       this.isCategorie = value
      },
     articlesCat(id) {
-      let triArticle =this.articles.filter(art => art.idCat === id);
-      triArticle.sort(function(a, b) {
-      return a.moyenne - b.moyenn
-      })
-      this.articles= triArticle
-      return this.articles.reverse()
+      return this.getArticles.filter(art => art.idCat === id)
     },
     getDate(date){
       return moment(date, 'YYYYMMDDHHmm').fromNow();

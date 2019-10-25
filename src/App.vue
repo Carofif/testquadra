@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-info color-navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item">
+        <a class="navbar-item color-logo">
           <img src="./assets/images/logo.jpeg" width="112" height="28">
         </a>
-        <div class="btn_add"><Add></Add></div>
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-end">
+             <figure class="image is-24x24 imge">
+              <img class="is-rounded" src="./assets/images/logo quadra2.jpg">
+            </figure>
+          
+          <div class="linebord">
+            <b-navbar-dropdown label="Quadra Diffusion Nord">
+                  <b-navbar-item href="#">
+                      Mon Profil
+                  </b-navbar-item>
+                  <b-navbar-item href="#">
+                      Déconnexion
+                  </b-navbar-item>
+            </b-navbar-dropdown>
+          </div>
           <div class="navbar-item">
-            <Add></Add>
+            <b-icon class="btn-icon" icon="help-circle" size="is-small" type="is-white"></b-icon>
+            <figure class="image is-32x32">
+              <img class="is-rounded" src="https://bulma.io/images/placeholders/32x32.png">
+            </figure>
           </div>
         </div>
       </div>
@@ -62,15 +78,11 @@
 </template>
 
 <script>
-import Add from './components/Add.vue'
 import { db } from '@/plugins/firebase'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
-  components: {
-    Add
-  },
   data() {
     return {
       categories: [],
@@ -176,7 +188,7 @@ html {
   background-color: #f2f7f9 !important;
 }
 .conteneur {
-  background-color: #388fec;
+  background-color: #3598dc;
   margin-bottom: 30px;
 }
 .espace {
@@ -186,13 +198,29 @@ html {
   margin-bottom: 10px;
   margin-top: 10px;
 }
-.btn_add{
+.btn_add {
   position: absolute;
   right: 10px;
   top: 7px
 }
-.padding-x-0{
+.padding-x-0 {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+.color-navbar {
+  background: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
+}
+.color-logo {
+  background: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
+}
+.btn-icon {
+  padding-right: 20px;
+}
+.linebord {
+  border-right: white solid 1px;
+}
+.imge {
+  margin-top: 10px;
+  padding-right: 0px;
 }
 </style>
