@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "aide-en-ligne-affixev",
+    "site": "aide-en-ligne-affixeb",
     "public": "dist",
     "ignore": [
       "firebase.json",
