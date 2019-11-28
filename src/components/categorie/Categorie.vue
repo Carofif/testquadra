@@ -76,5 +76,5 @@ export default {
       return moment(date, 'YYYYMMDDHHmm').fromNow();
     }
   }
-}
+}   
 </script>
