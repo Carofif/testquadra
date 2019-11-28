@@ -73,7 +73,7 @@ export default {
       return this.getArticles.filter(art => art.idCat === id)
     },
     getDate(date){
-      return moment(date, 'YYYYMMDDHHmm').fromNow();
+      return moment(date, 'lll').fromNow();
     }
   }
 }   
