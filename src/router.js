@@ -1,10 +1,7 @@
 import Vue from 'vue'
-import { auth } from '@/plugins/firebase'
 import Router from 'vue-router'
 import Categorie from './components/categorie/Categorie.vue'
 import Article from './components/article/Article.vue'
-import Login from './components/Users/login.vue'
-import Index from './views/index.vue'
 
 Vue.use(Router)
 
@@ -14,51 +11,24 @@ const router = new Router({
   routes: [
     {
       path: '*',
-      redirect: '/'
+      redirect: '/categorie'
     },
     {
-      path: '/',
-      redirect: '/login'
+      path: '/categorie',
+      name: 'categorie',
+      component: Categorie
     },
     {
-      path: '/index',
-      name: 'index',
-      component: Index,
-      redirect: '/categorie',
-      meta: {
-        requiresAuth: true
-      },
-      children: [
-        {
-          path: '/categorie',
-          name: 'categorie',
-          component: Categorie
-        },
-        {
-          path: '/categorie/:id',
-          component: Categorie
-        },
-        {
-          path: '/article/:id',
-          component: Article,
-          name: 'article'
-        }
-      ]
+      path: '/categorie/:id',
+      component: Categorie
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login
+      path: '/article/:id',
+      component: Article,
+      name: 'article'
     }
+    
   ]
-})
-
-router.beforeEach((to, from, next) => {
-  const currentUser = auth.currentUser
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('index')
-  else next()
 })
 
 export default router
