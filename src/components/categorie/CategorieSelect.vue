@@ -7,7 +7,7 @@
               <p class="arialigne">Aide en ligne /   <strong class="ariacat">Catégorie</strong></p>
             </router-link>
         </div>
-        <section class="container has-background-white p20">
+        <section class="container has-background-white p20 catbox" v-if="categories != null">
           <article  class="media espace" slot="trigger" aria-controls="contentIdForA11y1">
             <figure class="media-left">
               <p class="image is-64x64" >
@@ -28,9 +28,9 @@
               <div class="content espace artcolor" v-for="(art, y) in articlesCat(categories.id)" :key="y">
                  <router-link class="has-text-black" :to="{ name: 'article', params: { id: art.id }}">
                     <strong>{{art.titre}}</strong>
-                    <br>
-                    Mise à jour il y a  {{getDate(art.date)}}
                  </router-link>
+                  <br>
+                  Mise à jour il y a  {{getDate(art.date)}}
               </div>
           </div>    
         </section>
@@ -57,7 +57,7 @@ export default {
         this.getCategories.filter(cat => cat.id == this.$route.params.id)
         return this.getCategories[0]
       }
-      return this.getCategories
+      return null
     }
   },
   methods: {

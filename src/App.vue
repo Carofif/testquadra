@@ -26,7 +26,7 @@
           <div class="navbar-item">
             <b-icon class="btn-icon" icon="help-circle" size="is-small" type="is-white"></b-icon>
             <figure class="image is-32x32 is-user-avatar">
-              <img class="is-rounded" :src="currentUser.photoURL">
+              <img class="is-rounded">
             </figure>
           </div>
         </div>
