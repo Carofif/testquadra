@@ -1,39 +1,8 @@
 <template>
   <div id="app">
-    <nav class="navbar is-info color-navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item color-logo" @click="$router.push('/')">
-          <img src="./assets/images/logo.jpeg" width="112" height="28">
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-             <figure class="image is-24x24 imge">
-              <img class="is-rounded" src="./assets/images/logo quadra2.jpg">
-            </figure>
-          
-          <div class="linebord">
-            <b-navbar-dropdown label="Quadra Diffusion Nord">
-                  <b-navbar-item href="#">
-                      Mon Profil
-                  </b-navbar-item>
-                  <b-navbar-item>
-                      <b-button is-light @click="logout">Déconnexion</b-button>
-                  </b-navbar-item>
-            </b-navbar-dropdown>
-          </div>
-          <div class="navbar-item">
-            <b-icon class="btn-icon" icon="help-circle" size="is-small" type="is-white"></b-icon>
-            <figure class="image is-32x32 is-user-avatar">
-              <img class="is-rounded" :src="currentUser.photoURL">
-            </figure>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <NavBar/>
     <div class="conteneur">
-      <div class="columns is-mobile">
+      <div class="columns is-mobile padding-t-60">
         <div class="column is-three-fifths is-offset-one-fifth">
           <section class="section padding-x-0">
             <div class="container">
@@ -81,9 +50,11 @@
 import { db } from '@/plugins/firebase'
 import { mapActions, mapGetters } from 'vuex'
 import { auth } from '@/plugins/firebase'
+import NavBar from '@/components/general/Navbar.vue'
 
 export default {
   name: 'app',
+  components: { NavBar },
   data() {
     return {
       categories: [],
