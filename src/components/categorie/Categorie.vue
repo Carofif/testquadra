@@ -6,7 +6,7 @@
           class="container has-background-white"
           v-for="(item, index) in categories"
           :key="index">
-          <b-collapse :open="false" aria-id="contentIdForA11y1">
+          <div class="catbox">
             <article
               class="media espace espacemargin"
               slot="trigger"
@@ -28,7 +28,7 @@
                 </div>
               </div>
             </article>
-          </b-collapse>
+          </div>
         </section>
       </div>
     </div>

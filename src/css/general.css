@@ -111,3 +111,20 @@
     padding-bottom: 20px;
     padding-left: 80px;
   }
+  .pl {
+    padding-left: 40px;
+  }
+  .p20 {
+    padding: 20px;
+  }
+  .artcolor {
+    background-color: #F2F7F9;
+  }
+  .catbox {
+    box-shadow: 0px 0px 3px #00000029;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}

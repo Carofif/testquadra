@@ -2,9 +2,9 @@
 <div>
   <div class="columns is mobible">
     <div class="column is-three-fifths is-offset-one-fifth">
-      <div class="ariaposition">
+      <div>
         <router-link :to="{ name: 'categorieSelect', params: { id: article.idCat }}">
-         <p class="arialigne">Aide en ligne/ <strong class="ariacat">Catégorie</strong></p>
+         <p class="arialigne">Aide en ligne /  <strong class="ariacat">Catégorie</strong></p>
         </router-link>
       </div>
       <div class="card artvue" id="card" v-if="getArticles.length">
