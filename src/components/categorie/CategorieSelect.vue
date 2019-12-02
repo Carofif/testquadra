@@ -54,8 +54,7 @@ export default {
     ...mapGetters(["getCategories", "getArticles"]),
     categories() {
       if (this.$route.params.id) {
-        this.getCategories.filter(cat => cat.id == this.$route.params.id)
-        return this.getCategories[0]
+        return this.getCategories.filter(cat => cat.id == this.$route.params.id)[0]
       }
       return null
     }
