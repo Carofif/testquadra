@@ -33,11 +33,24 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+  .padding-x-10 {
+    padding: 0 10px 0 10px;
+  }
+  .padding-x-20 {
+    padding: 0 20px 0 20px;
+  }
+  .padding-t-60 {
+    padding: 60px 0 0 0;
+  }
+  .padding-r-10 {
+    padding-right: 20px !important;
+  }
   .color-navbar {
-    background: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
+    background-image: -webkit-gradient(linear, left top, right top, from(#2079B7), to(#35DCD1));
+    background-image: linear-gradient(to right, #2079B7, #35DCD1);
   }
   .color-logo {
-    background: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
+    background-image: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
   }
   .btn-icon {
     padding-right: 20px;
@@ -48,4 +61,11 @@
   .imge {
     margin-top: 10px;
     padding-right: 0px;
+  }
+  .navbar-item img {
+    max-height: 3rem !important;
+  }
+  .separation-bar-header {
+    border-right: 1px solid white;
+    height: 48px
   }
