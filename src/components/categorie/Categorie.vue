@@ -2,21 +2,15 @@
   <div>
     <div class="columns is-mobile">
       <div class="column is-three-fifths is-offset-one-fifth">
-        <router-link v-if="isCategorie" class="navbar-item has-text-dark" to="/categorie">
-          <span>Aide en ligne/Catégorie</span>
-        </router-link>
         <section
           class="container has-background-white"
           v-for="(item, index) in categories"
-          :key="index"
-          @click="setIsCategorie(!isCategorie)"
-        >
-          <b-collapse :open="false" aria-id="contentIdForA11y1">
+          :key="index">
+          <div class="catbox">
             <article
               class="media espace espacemargin"
               slot="trigger"
-              aria-controls="contentIdForA11y1"
-            >
+              aria-controls="contentIdForA11y1">
               <figure class="media-left">
                 <p class="image is-64x64">
                   <img :src="item.image" alt />
@@ -25,27 +19,16 @@
               <div class="media-content">
                 <div class="content">
                   <p>
-                    <strong>{{item.libelle}}</strong>
-                    <br />
+                    <router-link :to="{ name: 'categorieSelect', params: { id: item.id }}">
+                      <strong class="has-text-black">{{item.libelle}}</strong>
+                    </router-link>
+                    <br/>
                     {{articlesCat(item.id).length}} articles dans cette catégorie
                   </p>
                 </div>
               </div>
             </article>
-            <div class="espace">
-              <div
-                class="content espace has-background-light"
-                v-for="(art, y) in articlesCat(item.id)"
-                :key="y"
-              >
-                <router-link :to="{ name: 'article', params: { id: art.id }}">
-                  <strong>{{art.titre}}</strong>
-                  <br />
-                  Mise à jour {{getDate(art.date)}}
-                </router-link>
-              </div>
-            </div>
-          </b-collapse>
+          </div>
         </section>
       </div>
     </div>
@@ -53,38 +36,48 @@
 </template>
 
 <script>
-import moment from "moment";
-import { mapGetters } from "vuex";
+import { mapGetters } from "vuex"
 
-moment.locale("fr");
 
 export default {
   data() {
     return {
-      isCategorie: false
-    };
+    }
   },
   computed: {
     ...mapGetters(["getCategories", "getArticles"]),
     categories() {
       if (this.$route.params.id) {
-        return this.getCategories.filter(
-          cat => cat.id === this.$route.params.id
-        );
+        return this.getCategories.filter(cat => cat.id === this.$route.params.id);
       }
       return this.getCategories;
     }
   },
   methods: {
-    setIsCategorie(value) {
-      this.isCategorie = value;
-    },
     articlesCat(id) {
       return this.getArticles.filter(art => art.idCat === id);
-    },
-    getDate(date) {
-      return moment(date, "lll").fromNow();
     }
   }
-};
+}
 </script>
+
+<style>
+.ariaposition {
+  top: 0px;
+  left: 0px;
+  width: 111px;
+  height: 19px;
+}
+.arialigne {
+  text-align: left;
+  font: Regular 14px Open Sans;
+  letter-spacing: 0;
+  color: #C2CAD8;
+}
+.ariacat{
+  text-align: left;
+  font: Regular 19px Open Sans;
+  letter-spacing: 0;
+  color: #2C3E50
+}
+</style>

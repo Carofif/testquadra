@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Categorie from './components/categorie/Categorie.vue'
+import CategorieSelect from './components/categorie/CategorieSelect.vue'
 import Article from './components/article/Article.vue'
 
 Vue.use(Router)
@@ -8,8 +9,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '*',
       redirect: '/categorie'
     },
@@ -19,15 +19,16 @@ const router = new Router({
       component: Categorie
     },
     {
-      path: '/categorie/:id',
-      component: Categorie
-    },
-    {
       path: '/article/:id',
       component: Article,
       name: 'article'
+    },
+    {
+      path: '/categorie/:id',
+      component: CategorieSelect,
+      name: 'categorieSelect'
     }
-    
+
   ]
 })
 
