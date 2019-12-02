@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar is-info color-navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item color-logo">
+        <a class="navbar-item color-logo" @click="$router.push('/')">
           <img src="./assets/images/logo.jpeg" width="112" height="28">
         </a>
       </div>
