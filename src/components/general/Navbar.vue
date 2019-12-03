@@ -2,7 +2,7 @@
   <nav class="navbar is-transparent is-fixed-top color-navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item color-logo">
-        <img src="../../assets/images/logo-affixe-2.0.svg" height="41" class="padding-x-20">
+        <img src="../../assets/images/logo-affixe-2.0.svg" @click="$router.push('/')" height="41" class="padding-x-20">
       </a>
     </div>
 
