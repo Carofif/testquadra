@@ -42,7 +42,10 @@
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <div class="padding-b-65">
+      <router-view></router-view>
+    </div>
+    <Footer/>
   </div>
 </template>
 
@@ -51,10 +54,11 @@ import { db } from '@/plugins/firebase'
 import { mapActions, mapGetters } from 'vuex'
 import { auth } from '@/plugins/firebase'
 import NavBar from '@/components/general/Navbar.vue'
+import Footer from '@/components/general/Footer.vue'
 
 export default {
   name: 'app',
-  components: { NavBar },
+  components: { NavBar, Footer },
   data() {
     return {
       categories: [],

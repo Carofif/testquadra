@@ -1,4 +1,4 @@
-.indexgen {
+  .indexgen {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,6 +43,9 @@
   }
   .padding-t-60 {
     padding: 60px 0 0 0;
+  }
+  .padding-b-65 {
+    padding: 0 0 65px 0;
   }
   .padding-r-10 {
     padding-right: 20px !important;
@@ -105,7 +108,7 @@
     color: #2C3E50
   }
   .color-back-grid {
-    background-color: #F2F7F9;
+    background-color: #F2F7F9 !important;
   }
   .color-grid-2{
     color: #5E738B;
@@ -117,4 +120,10 @@
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-}
+  }
+  .fixe-h-foot{
+    height: 60px;
+  }
+  .cursor-pointer:hover{
+    cursor: pointer;
+  }

@@ -2,7 +2,7 @@
   <div>
     <div class="columns is-mobile">
       <div class="column is-three-fifths is-offset-one-fifth">
-        <div>
+        <div class="container">
             <router-link :to="{ name: 'categorie'}">
               <p class="arialigne">Aide en ligne /   <strong class="ariacat">Catégorie</strong></p>
             </router-link>
@@ -10,9 +10,7 @@
         <section class="container has-background-white p20 catbox" v-if="categories != null">
           <article  class="media espace" slot="trigger" aria-controls="contentIdForA11y1">
             <figure class="media-left">
-              <p class="image is-64x64" >
-              <img :src="categories.image" alt="">
-              </p>
+              <p class="image is-64x64" > <img :src="categories.image"> </p>
             </figure>
             <div class="media-content">
               <div class="container has-background-white">
@@ -25,12 +23,14 @@
             </div>
           </article>
           <div class="espace">
-              <div class="content espace color-back-grid" v-for="(art, y) in articlesCat(categories.id)" :key="y">
-                 <router-link class="has-text-black" :to="{ name: 'article', params: { id: art.id }}">
-                    <strong>{{art.titre}}</strong>
-                 </router-link>
-                  <br>
-                  Mise à jour il y a  {{getDate(art.date)}}
+              <div
+                class="content espace color-back-grid cursor-pointer"
+                v-for="(art, y) in articlesCat(categories.id)"
+                :key="y"
+                @click="$router.push({ name: 'article', params: { id: art.id }})">
+                <strong>{{art.titre}}</strong>
+                <br>
+                Mise à jour il y a  {{getDate(art.date)}}
               </div>
           </div>    
         </section>
