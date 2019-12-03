@@ -25,7 +25,7 @@
             </div>
           </article>
           <div class="espace">
-              <div class="content espace artcolor" v-for="(art, y) in articlesCat(categories.id)" :key="y">
+              <div class="content espace color-back-grid" v-for="(art, y) in articlesCat(categories.id)" :key="y">
                  <router-link class="has-text-black" :to="{ name: 'article', params: { id: art.id }}">
                     <strong>{{art.titre}}</strong>
                  </router-link>

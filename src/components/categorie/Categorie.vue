@@ -61,23 +61,4 @@ export default {
 }
 </script>
 
-<style>
-.ariaposition {
-  top: 0px;
-  left: 0px;
-  width: 111px;
-  height: 19px;
-}
-.arialigne {
-  text-align: left;
-  font: Regular 14px Open Sans;
-  letter-spacing: 0;
-  color: #C2CAD8;
-}
-.ariacat{
-  text-align: left;
-  font: Regular 19px Open Sans;
-  letter-spacing: 0;
-  color: #2C3E50
-}
-</style>
+<style></style>

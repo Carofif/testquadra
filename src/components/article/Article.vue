@@ -1,21 +1,46 @@
 <template>
 <div>
   <div class="columns is mobible">
-    <div class="column is-three-fifths is-offset-one-fifth">
+    <div class="column is-three-fifths is-offset-one-fifth" v-if="article">
+
+      <!-- Fil d'arriane -->
       <div>
         <router-link :to="{ name: 'categorieSelect', params: { id: article.idCat }}">
          <p class="arialigne">Aide en ligne /  <strong class="ariacat">Catégorie</strong></p>
         </router-link>
       </div>
-      <div class="card artvue" id="card" v-if="getArticles.length">
-        <strong class="card-header-title" style="font-size: 3em; margin: auto">{{article.titre}}</strong>
-        <div class="card-content contenue" v-html="article.content"></div>
-        <div class="artfoot mt">
-            <span class="textfoot"> Ces informations vous-ont elles été utiles?
-              <a  @click="clickImage(15)"><img src="./../../assets/images/smiling.png" alt="" id="img1"></a>
-              <a  @click="clickImage(10)"><img src="./../../assets/images/confused.png" alt="" id="img2"></a>
-              <a @click="clickImage(5)"><img src="./../../assets/images/unhappy.png" alt="" id="img3"></a>
-            </span>
+
+      <!-- Bloc article -->
+      <div class="card pb-20">
+        <div class="padding-content-art">
+          <div class="pb-20">
+            <strong class="is-size-4">{{article.titre}}</strong>
+          </div>
+          <div v-html="article.content"></div>
+        </div>
+        <div class="margin-x-20 p20 color-back-grid">
+          <!-- <span> Ces informations vous-ont elles été utiles?
+            <a @click="clickImage(15)"><img src="./../../assets/images/smiling.png"></a>
+            <a @click="clickImage(10)"><img src="./../../assets/images/confused.png"></a>
+            <a @click="clickImage(5)"><img src="./../../assets/images/unhappy.png"></a>
+          </span> -->
+          <nav class="level">
+            <!-- Left side -->
+            <div class="level-left">
+              <div class="level-item">
+                <p class="has-text-weight-bold color-grid-2 is-6">Ces informations vous-ont elles été utiles?</p>
+              </div>
+              <div class="level-item pl">
+                <a @click="clickImage(15)"><img src="./../../assets/images/Image 1.png"></a>
+              </div>
+              <div class="level-item">
+                <a @click="clickImage(10)"><img src="./../../assets/images/Image 3.png"></a>
+              </div>
+              <div class="level-item">
+                <a @click="clickImage(5)"><img src="./../../assets/images/Image 2.png"></a>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
