@@ -3,9 +3,10 @@
     <div class="columns is-mobile">
       <div class="column is-three-fifths is-offset-one-fifth">
         <section
-          class="container has-background-white"
+          class="container has-background-white cursor-pointer"
           v-for="(item, index) in categories"
-          :key="index">
+          :key="index"
+          @click="cliqueCat(item.id)">
           <div class="catbox">
             <article
               class="media espace espacemargin"
@@ -19,9 +20,7 @@
               <div class="media-content">
                 <div class="content">
                   <p>
-                    <router-link :to="{ name: 'categorieSelect', params: { id: item.id }}">
-                      <strong class="has-text-black">{{item.libelle}}</strong>
-                    </router-link>
+                    <strong class="has-text-black">{{item.libelle}}</strong>
                     <br/>
                     {{articlesCat(item.id).length}} articles dans cette catégorie
                   </p>
@@ -56,6 +55,9 @@ export default {
   methods: {
     articlesCat(id) {
       return this.getArticles.filter(art => art.idCat === id);
+    },
+    cliqueCat (id) {
+     this.$router.push({name:'categorieSelect', params: { id: id }})
     }
   }
 }

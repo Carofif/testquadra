@@ -9,14 +9,14 @@
               <nav class="level">
                 <div class="level-left">
                   <div class="level-item">
-                    <p class="subtitle is-10 has-text-white">
+                    <p class="subtitle is-4 has-text-weight-bold has-text-white">
                       Comment pouvons-nous vous aider ?
                     </p>
                   </div>
                 </div>
                 <div class="level-right">
                   <p class="level-item has-text-white"><i class="fas fa-external-link-alt"></i></p>
-                  <p class="level-item has-text-white">Aller sur Affixe2.0</p>
+                  <p class="level-item has-text-white is-size-7">Aller sur Affixe2.0</p>
                 </div>
               </nav>
               <div class="field">
@@ -26,6 +26,7 @@
                     placeholder="Rechercher des réponses..."
                     icon="magnify"
                     field="motcle"
+                    size="is-medium"
                     @select="option => selected = option">
                     <template slot-scope="props">
                         <p>

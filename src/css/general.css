@@ -14,11 +14,11 @@
     background-color: #f2f7f9 !important;
   }
   .conteneur {
-    background-color: #3598dc;
+    background-color: #3598DC;
     margin-bottom: 30px;
   }
   .espace {
-    padding: 20px;
+    padding: 40px;
   }
   .espacemargin {
     margin-bottom: 10px;
@@ -73,7 +73,7 @@
     background-image: linear-gradient(to right, #2079B7, #35DCD1);
   }
   .color-logo {
-    background-image: linear-gradient(to right, rgba(32, 122, 184, 1) 0%, rgba(53, 152, 220, 1)100%);
+    background: transparent linear-gradient(90deg, #2079B7 0%, #3598DC 100%) 0% 0% no-repeat
   }
   .btn-icon {
     padding-right: 20px;
