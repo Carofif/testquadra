@@ -3,7 +3,7 @@
     <div class="columns is-mobile">
       <div class="column is-three-fifths is-offset-one-fifth">
         <section
-          class="container has-background-white"
+          class="container has-background-white cursor-pointer"
           v-for="(item, index) in categories"
           :key="index"
           @click="cliqueCat(item.id)">
