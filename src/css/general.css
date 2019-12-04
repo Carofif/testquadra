@@ -69,8 +69,8 @@
   }
 
   .color-navbar {
-    background-image: -webkit-gradient(linear, left top, right top, from(#2079B7), to(#35DCD1));
-    background-image: linear-gradient(to right, #2079B7, #35DCD1);
+    background-image: -webkit-gradient(linear, left top, right top, from(#2079B7), to(#3598DC));
+    background-image: linear-gradient(to right, #2079B7, #3598DC);
   }
   .color-logo {
     background: transparent linear-gradient(90deg, #2079B7 0%, #3598DC 100%) 0% 0% no-repeat
